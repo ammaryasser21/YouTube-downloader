@@ -40,7 +40,7 @@ def load_settings():
             download_folder.set(settings.get("download_folder", os.path.expanduser("~/Downloads")))
             resolution_var.set(settings.get("resolution", "best"))
             format_var.set(settings.get("format", "mp4"))
-            language_var.set(settings.get("language", "English"))  # Added line
+            language_var.set(settings.get("language", "English"))
     else:
         save_settings()
 
@@ -50,7 +50,7 @@ def save_settings():
         "download_folder": download_folder.get(),
         "resolution": resolution_var.get(),
         "format": format_var.get(),
-        "language": language_var.get()  # Added line
+        "language": language_var.get()
     }
     with open(SETTINGS_FILE, "w") as file:
         json.dump(settings, file)
@@ -128,7 +128,7 @@ load_settings()
 def open_settings():
     settings_window = Toplevel(app)
     settings_window.title("Settings")
-    settings_window.geometry("400x200")  # Adjusted window size to accommodate new button
+    settings_window.geometry("400x200")
 
     resolution_menu = ctk.CTkOptionMenu(settings_window, variable=resolution_var, values=["best", "144", "240", "360", "480", "720", "1080"])
     resolution_menu.pack(pady=5)
@@ -325,7 +325,7 @@ def progress_hook(d):
             print(f"Could not convert progress percentage '{percent_str}' to float.")
     elif d['status'] == 'finished':
         progress_var.set(100)
-        progress_bar.set(1.0)  # Set progress bar to 100%
+        progress_bar.set(1.0)
         app.update_idletasks()
 
 # Pause download
@@ -407,6 +407,7 @@ folder_button.grid(row=4, column=0, padx=100, pady=10, sticky="ew")
 # Folder Display
 folder_label = ctk.CTkLabel(app, textvariable=download_folder, font=ctk.CTkFont(size=12))
 folder_label.grid(row=4, column=1, columnspan=3, padx=100, pady=10, sticky="ew")
+
 # Frame for Control Buttons
 control_button_frameu0 = ctk.CTkFrame(app)
 control_button_frameu0.grid(row=5, column=0, columnspan=4, padx=100, pady=0, sticky="ew")
@@ -419,10 +420,10 @@ resolution_options = ["best","bestvideo","worstvideo", "worst"]
 resolution_menu = ctk.CTkOptionMenu(control_button_frameu0, variable=resolution_var, values=resolution_options)
 resolution_menu.pack(side="left", expand=True, padx=20, pady=20)
 
-
 # Frame for Centering Buttons
 button_frame = ctk.CTkFrame(app)
 button_frame.grid(row=7, column=0, columnspan=4, padx=100, pady=10, sticky="ew")
+
 # Frame for Control Buttons
 control_button_frameu = ctk.CTkFrame(app)
 control_button_frameu.grid(row=8, column=0, columnspan=4, padx=100, pady=5, sticky="ew")
@@ -470,5 +471,6 @@ cancel_button.pack(side="left", expand=True, padx=20, pady=20)
 
 # Load and apply settings on startup
 update_language()
+
 # Run the app
 app.mainloop()
